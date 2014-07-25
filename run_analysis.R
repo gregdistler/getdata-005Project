@@ -16,12 +16,23 @@ ytrain <- read.table("data/UCI HAR Dataset/train/Y_train.txt")
 actlabels <- read.table("data/UCI HAR Dataset/activity_labels.txt")
 features <- read.table("data/UCI HAR Dataset/features.txt")
 
+##row bind the data
 allX <- rbind(xtest,xtrain)
 allSubj <-rbind(subtest,subtrain)
-allY <- rbind(ytest,train)
+allY <- rbind(ytest,ytrain)
 
-names(xtest)<-features[,2]
-names(xtrain)<-features[,2]
-rbind - row bind
+##give descriptive labels to everything
+names(allX)<-features[,2]
+names(allSubj)<-"Subject"
+names(allY) <- "Activity"
+names(actlabels) <- c("ID","Act Label")
 
-cbind - column bind
+##column bind
+AllData_NoAct <- cbind(allX,allSubj)
+AllData_NoAct <- cbind(AllData_NoAct,allY)
+
+##now merge data
+AllData_Act <- merge(AllData_NoAct,actlabels,by.x = "Activity",by.y = "ID",all=TRUE)
+
+
+
