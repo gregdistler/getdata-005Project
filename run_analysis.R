@@ -1,5 +1,3 @@
-setwd("/Users/gregdistler/getdata-005Project")
-
 ## read in the test data
 subtest <- read.table("data/UCI HAR Dataset/test/subject_test.txt")
 xtest <- read.table("data/UCI HAR Dataset/test/X_test.txt")
