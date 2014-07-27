@@ -29,8 +29,28 @@ The run_analysis.R description:
             
             * The Activity labels were given "ID" and "Act Label"
             
-      6. Using cbind these were then made into a large data set
+      6. The data columns in X were then filtered for mean() and std()
       
-      7. Using merge, I took the large data set and merged the Activity label based on 1-6 ID
+            * grep was used to find the column names from the features.txt file that contained mean() and std()
+            
+            * I only filted for mean() and std() because I interpreted the data as that this data was the actual mean and std because these were functions applied to it
+            
+            * I included meanfreq() and stdfreq() because I interpreted these to be mean and std data
+            
+            * The X data that contained the test and train data was filtered down to just the columns of mean() and std()
+            
+      7. Using cbind these were then made into a large data set
       
-            * The Data set currently goes X Data (561 columns), Subject, Activity by label instead of ID
+      8. Using merge, I took the large data set and merged the Activity label based on 1-6 ID
+      
+            * The Data set currently goes X Data (79 columns), Subject, Activity by label instead of ID
+            
+            * It is called AllData_Act
+            
+      9. To get the final data set of the means of the data broken down by subject and activity:
+      
+            * Aggregate ignoring the first column (Act ID and last two (subject and Act Label))
+            
+            * Use the function "mean" in the aggregation
+            
+            * Rename the new first two columns as subject and activity
